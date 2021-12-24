@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
 const audioSrc =
-  "https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav";
+  'https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav';
 
 const TimerLengthControl = ({
   addID,
@@ -43,7 +43,7 @@ const TimerLengthControl = ({
 };
 
 const App = () => {
-  const [timer, setTimer] = useState(5);
+  const [timer, setTimer] = useState(25 * 60);
   const [breakLength, setBreakLength] = useState(5 * 60);
   const [sessionLength, setSessionLength] = useState(25 * 60);
   const [timerOn, setTimerOn] = useState(false);
@@ -66,7 +66,7 @@ const App = () => {
   };
 
   const updateTime = (amount, lengthID) => {
-    if (lengthID === "break-length") {
+    if (lengthID === 'break-length') {
       if ((breakLength <= 60 && amount < 0) || breakLength >= 60 * 60) {
         return;
       }
@@ -107,16 +107,16 @@ const App = () => {
         }
       }, 30);
       localStorage.clear();
-      localStorage.setItem("intervalID", interval);
+      localStorage.setItem('intervalID', interval);
     }
     if (timerOn) {
-      clearInterval(localStorage.getItem("intervalID"));
+      clearInterval(localStorage.getItem('intervalID'));
     }
     setTimerOn(!timerOn);
   };
 
   const resetTime = () => {
-    clearInterval(localStorage.getItem("intervalID"));
+    clearInterval(localStorage.getItem('intervalID'));
 
     audio.pause();
     audio.currentTime = 0;
@@ -132,9 +132,9 @@ const App = () => {
     let minutes = Math.floor(time / 60);
     let seconds = time % 60;
     return (
-      (minutes < 10 ? "0" + minutes : minutes) +
-      ":" +
-      (seconds < 10 ? "0" + seconds : seconds)
+      (minutes < 10 ? '0' + minutes : minutes) +
+      ':' +
+      (seconds < 10 ? '0' + seconds : seconds)
     );
   };
 
@@ -165,7 +165,7 @@ const App = () => {
         <div className="w-full flex justify-center mt-8">
           <div className="flex flex-col items-center">
             <div id="timer-label" className="font-normal text-4xl">
-              {onBreak ? "Break" : "Session"}
+              {onBreak ? 'Break' : 'Session'}
             </div>
             <div id="time-left" className="font-normal text-6xl">
               {formatTime(timer)}
